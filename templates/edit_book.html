@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Book</h2>
+    <form method="POST" action="{{ url_for('edit_book', id=book.id) }}">
+        <div class="mb-3">
+            <label for="id" class="form-label">Book ID</label>
+            <input type="text" class="form-control" id="id" name="id" value="{{ book.id }}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" value="{{ book.author }}">
+        </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" class="form-control" id="isbn" name="isbn" value="{{ book.isbn }}">
+        </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category ID</label>
+            <input type="text" class="form-control" id="category_id" name="category_id" value="{{ book.category_id }}">
+        </div>
+        <div class="mb-3">
+            <label for="publisher_id" class="form-label">Publisher ID</label>
+            <input type="text" class="form-control" id="publisher_id" name="publisher_id" value="{{ book.publisher_id }}">
+        </div>
+        <div class="mb-3">
+            <label for="publication_year" class="form-label">Publication Year</label>
+            <input type="number" class="form-control" id="publication_year" name="publication_year" value="{{ book.publication_year }}">
+        </div>
+        <button type="submit" class="btn btn-success">Update Book</button>
+        <a href="{{ url_for('books') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

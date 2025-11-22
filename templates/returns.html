@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Returned Books</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Return ID</th>
+                <th>Issue ID</th>
+                <th>Book ID</th>
+                <th>Book Title</th>
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Return Date</th>
+                <th>Condition Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if returns %}
+                {% for ret in returns %}
+                <tr>
+                    <td>{{ ret.return_id }}</td>
+                    <td>{{ ret.issue_id }}</td>
+                    <td>{{ ret.book_id }}</td>
+                    <td>{{ ret.book_title }}</td>
+                    <td>{{ ret.member_id }}</td>
+                    <td>{{ ret.member_name }}</td>
+                    <td>{{ ret.return_date }}</td>
+                    <td>{{ ret.condition_notes or '-' }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center text-danger">
+                        ⚠️ No returns recorded yet
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

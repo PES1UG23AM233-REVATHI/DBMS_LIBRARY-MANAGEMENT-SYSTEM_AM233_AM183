@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Return Book</h2>
+    <form method="POST" action="{{ url_for('add_return') }}">
+        <div class="mb-3">
+            <label for="issue_id" class="form-label">Issue ID</label>
+            <select class="form-control" id="issue_id" name="issue_id" required>
+                <option value="">-- Select Issue --</option>
+                {% for issue in issues %}
+                    <option value="{{ issue.id }}">
+                        {{ issue.id }} | {{ issue.book_title }} | {{ issue.member_name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="return_date" class="form-label">Return Date & Time</label>
+            <input type="datetime-local" class="form-control" id="return_date" name="return_date" value="{{ now|datetime_local }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="condition_notes" class="form-label">Condition Notes</label>
+            <textarea class="form-control" id="condition_notes" name="condition_notes"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Return Book</button>
+    </form>
+</div>
+{% endblock %}

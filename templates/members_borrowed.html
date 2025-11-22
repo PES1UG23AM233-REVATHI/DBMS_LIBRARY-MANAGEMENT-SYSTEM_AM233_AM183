@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card p-4">
+        <h3>Members who borrowed more than N books</h3>
+        <form method="post" class="row g-2 align-items-center mb-3">
+          <div class="col-auto">
+            <label for="threshold" class="col-form-label">N</label>
+          </div>
+          <div class="col-auto">
+            <input type="number" id="threshold" name="threshold" min="1" value="{{ threshold or 1 }}" class="form-control" />
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary">Show</button>
+          </div>
+        </form>
+
+        {% if members is not none %}
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr><th>Member ID</th><th>Name</th><th>Borrow Count</th></tr>
+              </thead>
+              <tbody>
+                {% for m in members %}
+                  <tr>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.name }}</td>
+                    <td>{{ m.borrow_count }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
