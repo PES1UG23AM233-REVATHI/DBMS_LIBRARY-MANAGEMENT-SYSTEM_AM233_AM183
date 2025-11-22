@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<div style="display:flex; gap:20px;">
+
+    <div style="padding:20px; border:1px solid #ddd;">
+        <h3>Total Books</h3>
+        <p>{{ total_books }}</p>
+    </div>
+
+    <div style="padding:20px; border:1px solid #ddd;">
+        <h3>Total Members</h3>
+        <p>{{ total_members }}</p>
+    </div>
+
+    <div style="padding:20px; border:1px solid #ddd;">
+        <h3>Books Issued</h3>
+        <p>{{ total_issues }}</p>
+    </div>
+
+</div>
+
+<br><br>
+
+<a href="{{ url_for('books') }}">📚 View Books</a> |
+<a href="{{ url_for('members') }}">🧑 Members</a> |
+<a href="{{ url_for('issue_book') }}">🔖 Issue Book</a> |
+<a href="{{ url_for('returns') }}">✅ Returns</a>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+/* Table Styles */
+.table-wrap {
+	background: var(--card-bg);
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 6px 20px var(--card-shadow);
+	margin: 4rem 0;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 0;
+	background: transparent;
+	border-collapse: collapse;
+}
+
+.table th {
+	background: var(--table-header-bg);
+	border-bottom: 2px solid var(--table-border);
+	color: var(--light);
+	padding: 1rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 0.5px;
+}
+
+.table td {
+	padding: 1rem;
+	vertical-align: middle;
+	border-bottom: 1px solid var(--table-border);
+	color: var(--gray);
+}
+
+.table tbody tr:hover {
+	background: var(--table-hover);
+}
+
+.table .actions {
+	width: 120px;
+	text-align: right;
+}
+
+.table .actions a {
+	margin-left: 0.75rem;
+	color: var(--gray);
+	transition: color 0.2s;
+}
+
+.table .actions a:hover {
+	color: var(--primary);
+}
+
+/* Card styling for forms and content */
+.content-card {
+	background: var(--card-bg);
+	border-radius: 12px;
+	padding: 2rem;
+	box-shadow: 0 6px 20px var(--card-shadow);
+	margin: 1.5rem 0;
+}
+
+.content-card h2 {
+	color: var(--light);
+	margin-bottom: 1.5rem;
+	font-weight: 600;
+}
+
+/* Form controls */
+.form-control {
+	border-radius: 8px;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--table-border);
+	background: rgba(255,255,255,0.05);
+	color: var(--light);
+	margin-bottom: 1rem;
+}
+
+.form-control:focus {
+	border-color: var(--primary);
+	box-shadow: 0 0 0 3px rgba(0,255,255,0.1);
+	outline: none;
+}
+
+/* Section spacing */
+.section-padding {
+	padding: 3rem 0;
+}
+
+/* Page header */
+.page-header {
+	background: linear-gradient(180deg, var(--table-header-bg) 0%, transparent 100%);
+	padding: 2rem 0;
+	margin-bottom: 2rem;
+	border-bottom: 1px solid var(--table-border);
+}
+
+.page-header h1 {
+	color: var(--light);
+	font-size: 1.75rem;
+	font-weight: 600;
+	margin: 0;
+}
+
+/* Status badges */
+.badge-status {
+	padding: 0.35rem 0.75rem;
+	border-radius: 25px;
+	font-weight: 500;
+	font-size: 0.85rem;
+}
+
+.badge-active {
+	background: rgba(16,185,129,0.1);
+	color: #10b981;
+}
+
+.badge-inactive {
+	background: rgba(239,68,68,0.1);
+	color: #ef4444;
+}

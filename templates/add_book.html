@@ -1,0 +1,58 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Add New Book</h2>
+    <form method="POST" action="{{ url_for('add_book') }}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author">
+        </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" class="form-control" id="isbn" name="isbn" readonly required>
+        </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select name="category_id" id="category_id" class="form-control">
+                <option value="">-- Select category --</option>
+                {% for c in categories %}
+                <option value="{{ c.id }}">{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="publisher_id" class="form-label">Publisher</label>
+            <select name="publisher_id" id="publisher_id" class="form-control">
+                <option value="">-- Select publisher --</option>
+                {% for p in publishers %}
+                <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="publication_year" class="form-label">Publication Year</label>
+            <input type="number" class="form-control" id="publication_year" name="publication_year">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+        <a href="{{ url_for('books') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+    // Auto-generate random 13-digit ISBN (e.g., 978XXXXXXXXXXXX)
+    document.addEventListener("DOMContentLoaded", function() {
+        const isbnField = document.getElementById("isbn");
+        const isbn = "978" + Math.floor(100000000000 + Math.random() * 900000000000);
+        isbnField.value = isbn;
+    });
+</script>
+{% endblock %}

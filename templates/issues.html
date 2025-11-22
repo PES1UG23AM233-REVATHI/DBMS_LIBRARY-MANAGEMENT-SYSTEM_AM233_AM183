@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Issued Books</h2>
+
+    <a href="{{ url_for('issue_add') }}" class="btn btn-primary mb-3">➕ Issue Book</a>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Issue ID</th>
+                <th>Book ID</th>
+                <th>Book</th>
+                <th>Member ID</th>
+                <th>Member</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Penalty</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if issues %}
+            {% for issue in issues %}
+            <tr>
+                <td>{{ issue.issue_id }}</td>
+                <td>{{ issue.book_id }}</td>
+                <td>{{ issue.book_title }}</td>
+                <td>{{ issue.member_id }}</td>
+                <td>{{ issue.member_name }}</td>
+                <td>{{ issue.issue_date }}</td>
+                <td>{{ issue.due_date }}</td>
+
+                <td>
+                    {% if issue.returned == 0 %}
+                        <span class="text-danger">Not Returned</span>
+                    {% else %}
+                        <span class="text-success">Returned ✅</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if issue.penalty_amount > 0 %}
+                        <span class="text-danger">₹{{ "%.2f"|format(issue.penalty_amount) }}</span>
+                        {% if issue.returned == 0 %}
+                            <br><small class="text-muted">(Current)</small>
+                        {% endif %}
+                    {% else %}
+                        ₹0.00
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if issue.returned == 0 %}
+                        <a href="{{ url_for('return_add', issue_id=issue.issue_id) }}"
+                           class="btn btn-success btn-sm">Return</a>
+                    {% else %}
+                        ✅ Returned on {{ issue.return_date }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="10" class="text-center text-danger">
+                    ⚠️ No issues recorded yet
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

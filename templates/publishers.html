@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Publishers List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Imprint</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for publisher in publishers %}
+        <tr>
+            <td>{{ publisher.id }}</td>
+            <td>{{ publisher.name }}</td>
+            <td>{{ publisher.location }}</td>
+            <td>{{ publisher.imprint or '-' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

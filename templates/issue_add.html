@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Issue Book</h2>
+    <form method="POST" action="{{ url_for('issue_add') }}">
+        <!-- Book dropdown -->
+        <div class="mb-3">
+            <label for="book_id" class="form-label">Book</label>
+            <select class="form-control" id="book_id" name="book_id" required>
+                <option value="">Select Book</option>
+                {% for book in books %}
+                    <option value="{{ book.id }}">
+                        {{ book.title }} (Available: {{ book.available_copies }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Member dropdown -->
+        <div class="mb-3">
+            <label for="member_id" class="form-label">Member</label>
+            <select class="form-control" id="member_id" name="member_id" required>
+                <option value="">Select Member</option>
+                {% for member in members %}
+                    <option value="{{ member.id }}">{{ member.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Issue datetime -->
+        <div class="mb-3">
+            <label for="issue_date" class="form-label">Issue Date & Time</label>
+            <input type="datetime-local" class="form-control" id="issue_date" name="issue_date" required>
+        </div>
+
+        <!-- Hidden Due datetime -->
+        <input type="hidden" id="due_date" name="due_date">
+
+        <button type="submit" class="btn btn-primary">Issue Book</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const issueInput = document.getElementById("issue_date");
+    const dueInput = document.getElementById("due_date");
+    const now = new Date();
+    const localISO = now.toISOString().slice(0,16); // YYYY-MM-DDTHH:MM
+    issueInput.value = localISO;
+
+    const due = new Date(now.getTime() + 2*60000); // +2 minutes
+    dueInput.value = due.toISOString().slice(0,16);
+});
+</script>
+{% endblock %}
